@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
+        style={{ background: "url(/bg.svg)" }}
         className={clsx(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
@@ -60,7 +61,7 @@ export default function RootLayout({
               {list.map((item, index) => (
                 <Link href={item.route} key={index}>
                   <Card
-                    className="w-60 h-40  "
+                    className="w-60 h-40 border-2 border-green-500"
                     shadow="sm"
                     key={index}
                     isPressable
@@ -74,8 +75,8 @@ export default function RootLayout({
                 </Link>
               ))}
             </div>
+
             {children}
-           
           </div>
         </Providers>
       </body>
