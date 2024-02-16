@@ -74,8 +74,8 @@ export default function RootLayout({
                 </Link>
               ))}
             </div>
-
-            <div className="flex-1 p-8">{children}</div>
+            {children}
+           
           </div>
         </Providers>
       </body>
