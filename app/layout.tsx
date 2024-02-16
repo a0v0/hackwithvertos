@@ -1,27 +1,11 @@
-import { fontSans } from "@/config/fonts";
-import { siteConfig } from "@/config/site";
-import "@/styles/globals.css";
-import clsx from "clsx";
-import { Metadata } from "next";
-import { Providers } from "./providers";
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+"use client";
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-};
+import { fontSans } from "@/config/fonts";
+import "@/styles/globals.css";
+import { Help, Home } from "@mui/icons-material";
+import { Card, CardBody, Link } from "@nextui-org/react";
+import clsx from "clsx";
+import { Providers } from "./providers";
 
 export default function RootLayout({
   children,
@@ -30,44 +14,14 @@ export default function RootLayout({
 }) {
   const list = [
     {
-      title: "Orange",
-      img: "/images/fruit-1.jpeg",
-      price: "$5.50",
+      title: "Home",
+      icon: <Home />,
+      route: "/",
     },
     {
-      title: "Tangerine",
-      img: "/images/fruit-2.jpeg",
-      price: "$3.00",
-    },
-    {
-      title: "Raspberry",
-      img: "/images/fruit-3.jpeg",
-      price: "$10.00",
-    },
-    {
-      title: "Lemon",
-      img: "/images/fruit-4.jpeg",
-      price: "$5.30",
-    },
-    {
-      title: "Avocado",
-      img: "/images/fruit-5.jpeg",
-      price: "$15.70",
-    },
-    {
-      title: "Lemon 2",
-      img: "/images/fruit-6.jpeg",
-      price: "$8.00",
-    },
-    {
-      title: "Banana",
-      img: "/images/fruit-7.jpeg",
-      price: "$7.50",
-    },
-    {
-      title: "Watermelon",
-      img: "/images/fruit-8.jpeg",
-      price: "$12.20",
+      title: "Feedback",
+      icon: <Help />,
+      route: "/feedback",
     },
   ];
   return (
@@ -80,52 +34,48 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            {/* <Navbar /> */}
-            {/* sidebar */}
-            <aside className="w-20 absolute h-full bg-primary-900 text-white">
-              <div className="p-4">
-                <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
-                  {list.map((item, index) => (
-                    <Card
-                      shadow="sm"
-                      key={index}
-                      isPressable
-                      onPress={() => console.log("item pressed")}
-                    >
-                      <CardBody className="overflow-visible p-0">
-                        <Image
-                          shadow="sm"
-                          radius="lg"
-                          width="100%"
-                          alt={item.title}
-                          className="w-full object-cover h-[140px]"
-                          src={item.img}
-                        />
-                      </CardBody>
-                      <CardFooter className="text-small justify-between">
-                        <b>{item.title}</b>
-                        <p className="text-default-500">{item.price}</p>
-                      </CardFooter>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </aside>
-            <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
-              {children}
-            </main>
-            {/* <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-                title="nextui.org homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">NextUI</p>
-              </Link>
-            </footer> */}
+          {/* <section className="h-[calc(100vh_-_64px)] 2xl:h-[calc(84vh_-_64px)] overflow-hidden  grid  sm:grid-cols-2">
+            <Card className="w-40  h-screen text-white ">
+              {list.map((item, index) => (
+                <Card
+                  className="w-20 h-40  "
+                  shadow="sm"
+                  key={index}
+                  isPressable
+                >
+                  <CardBody className=" overflow-visible p-0 justify-center items-center">
+                    {item.icon}
+
+                    <h1>{item.title}</h1>
+                  </CardBody>
+                </Card>
+              ))}
+              {/* </div> */}
+          {/* </Card>
+            <Card className="w-auto bg-cyan-200"></Card>
+            {children}
+          </section> */}
+          <div className="flex h-screen">
+            <div className="px-4 gap-4 w-64 flex-none text-center flex flex-col justify-center">
+              {list.map((item, index) => (
+                <Link href={item.route} key={index}>
+                  <Card
+                    className="w-60 h-40  "
+                    shadow="sm"
+                    key={index}
+                    isPressable
+                  >
+                    <CardBody className=" overflow-visible p-0 justify-center items-center">
+                      {item.icon}
+
+                      <h1>{item.title}</h1>
+                    </CardBody>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex-1 p-8">{children}</div>
           </div>
         </Providers>
       </body>
