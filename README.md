@@ -5,7 +5,7 @@
 <h1>Pollution-Free Zone Finder 🌱 </h1> 
 
   <p>This is a <a href="https://nextjs.org/" target="_blank">Next.js</a> project bootstrapped, added with <a href="https://nextui.org/" target="_blank"><b>NextUI</b></a>.</p>
-  Pollution-Free Zone Finder, a small project built at the `HackWithVertos` event hosted by Lovely Professional University.
+  Pollution-Free Zone Finder 🌱, a small project built at the `HackWithVertos` event hosted by Lovely Professional University.
 
 </div>
 
